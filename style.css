@@ -1,0 +1,109 @@
+.mainContainer{
+    padding: 20px 15px;
+}
+.mainContainer .panel-group .panel{
+    margin-bottom: 5px;
+}
+.mainContainer .panel-heading{
+    margin: 0;
+    padding: 15px;
+}
+
+.mainContainer .panel-heading h4.panel-title{
+    /*font-size: 1.2em;*/
+}
+.mainContainer .panel-heading a span{
+    vertical-align: middle;
+}
+.mainContainer .panel-body .outputArea{
+    padding: 1em;
+}
+.mainContainer .panel-body .outputArea .btn{
+    margin-bottom: 1em;
+}
+
+pre.prettyprint, code.prettyprint{
+    width: 100%;
+    border-radius: 4px;
+}
+#q1Output{
+    height: 50vh;
+}
+
+.chart{
+    width: 70vmax;
+    height: 100vh;
+    margin: 0 auto;
+}
+
+
+/*css loader*/
+@-webkit-keyframes load7 {
+    0%,
+    80%,
+    100% {
+        box-shadow: 0 2.5em 0 -1.3em #000;
+    }
+    40% {
+        box-shadow: 0 2.5em 0 0 #000;
+    }
+}
+@keyframes load7 {
+    0%,
+    80%,
+    100% {
+        box-shadow: 0 2.5em 0 -1.3em #000;
+    }
+    40% {
+        box-shadow: 0 2.5em 0 0 #000;
+    }
+}
+
+.loader:before,
+.loader:after,
+.loader {
+    border-radius: 50%;
+    width: 1.5em;
+    height: 1.5em;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation: load7 1.8s infinite ease-in-out;
+    animation: load7 1.8s infinite ease-in-out;
+}
+.loader {
+    display: none;
+    font-size: 10px;
+    margin: 30px auto;
+    position: relative;
+    text-indent: -9999em;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+}
+.loader:before {
+    left: -3.5em;
+    -webkit-animation-delay: -0.32s;
+    animation-delay: -0.32s;
+}
+.loader:after {
+    left: 3.5em;
+}
+.loader:before,
+.loader:after {
+    content: '';
+    position: absolute;
+    top: 0;
+}
+
+/*utility*/
+.showEl{
+    display: block;
+}
+.hideEl{
+    display: none;
+}
+.p15{
+    padding: 15px;
+}

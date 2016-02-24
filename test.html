@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script src="http://code.highcharts.com/highcharts.js"></script>
+        <script src="http://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+        <script src="ajax.js"></script>
+        <script src="script.js"></script>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://google-code-prettify.googlecode.com/svn/trunk/styles/sunburst.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="mainContainer col-md-10 col-md-offset-1">
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading row" role="tab" id="q1Heading">
+                            <h4 class="panel-title">Write a program in any language that prints the numbers from 1 to 100. But for multiples of three print “Bizz” instead of the number and for the multiples of five print “Appz”. For numbers which are multiples of both three and five print “BizzAppz”.</h4>
+                            <a class="collapsed pull-right" role="button" data-toggle="collapse" data-parent="#accordion" href="#q1Collapse" aria-expanded="false" aria-controls="q1Collapse">See the Answer <span class=" glyphicon glyphicon-chevron-down"></span></a>
+                        </div>
+                        <div id="q1Collapse" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="q1Heading">
+                            <div class="panel-body">
+                                <figure class="col-md-8">
+                                    <pre class="prettyprint">
+                                        <code>
+    function compute() {
+        'use strict';
+        var res, i, j, maxLength=100;
+        for (i=1; j=maxLength+1, i < j; i++) {
+            res = (i % 3) ? "" : "Bizz";
+            res += (i % 5) ? "" : "Appz";
+            if (!res) { res = i; }
+            console.log(res);
+            printResult(res);
+        }
+    }
+    function printResult(res) {
+        'use strict';
+        var para = document.createElement("div");
+        para.innerHTML = res;
+        document.getElementById("draw").appendChild(para);
+    }
+                                        </code>
+                                    </pre>
+                                </figure>
+                                <div class="col-md-4 outputArea">
+                                    <input class="btn btn-primary col-md-12" type="button" value="Click to Compute the list" onclick="compute()">
+                                    <pre id="q1Output" class="prettyprint hidden"></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading row" role="tab" id="q2Heading">
+                            <h4 class="panel-title">Write a class (prototype) in JavaScript, with at least one method, and another class which extends the previous class. Make sure that when an instance is created of the latter, it returns true for an instanceof-check for both prototypes and that the method on the first prototype can be invoked.</h4>
+                            <a class="collapsed pull-right" role="button" data-toggle="collapse" data-parent="#accordion" href="#q2Collapse" aria-expanded="false" aria-controls="q2Collapse">See the Answer <span class=" glyphicon glyphicon-chevron-down"></span></a>
+                        </div>
+                        <div id="q2Collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="q2Heading">
+                            <div class="panel-body">
+                                <div class="col-md-6">
+                                    <h4 class="text-center col-md-12">ES 5 Style</h4>
+                                    <figure class="col-md-12">
+                                    <pre class="prettyprint">
+                                        <code>
+// constructor for Parent Class Mammal
+function Mammal(){
+}
+// add breathe function to the prototype of Mammal
+Mammal.prototype.breathe = function(){
+// do some breathing
+console.log("Meauwww!!");
+};
+
+// constructor for Child Class Cat
+function Cat(){
+}
+
+// set Cat.prototype to a new instance of Mammal
+Cat.prototype = new Mammal();
+
+// to ensures that cats know that they are cats
+Cat.prototype.constructor = Cat;
+
+var sal = new Mammal();
+sal.breathe();          // Meauwww
+
+var gary = new Cat();
+gary.breathe();         // Meauwww
+
+console.log(gary instanceof Cat);   //true
+console.log(gary instanceof Mammal);    //true
+                                        </code>
+                                    </pre>
+                                </figure>
+                                </div>
+                                <div class="col-md-6">
+                                    <h4 class="text-center col-md-12">ES 6 Style</h4>
+                                    <figure class="col-md-12">
+                                    <pre class="prettyprint">
+                                        <code>
+    class Cat {
+        constructor(name) {
+            this.name = name;
+        }
+
+        speak() {
+            console.log(this.name + ' makes a noise.');
+        }
+    }
+
+    class Lion extends Cat {
+        speak() {
+            super.speak();
+            console.log(this.name + ' roars.');
+        }
+    }
+
+    var bob = new Cat("bob");
+    bob.speak();
+
+    var luke = new Lion("luke");
+    luke.speak();
+
+    console.log(luke instanceof Lion);
+    console.log(luke instanceof Cat);
+                                        </code>
+                                    </pre>
+                                </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading row" role="tab" id="q3Heading">
+                            <h4 class="panel-title">Using the attached data, create a chart in JavaScript which shows a trend over time of the percentage of responses for that day which have a value of “yes” for the “answer” column.</h4>
+                            <a class="collapsed pull-right" role="button" data-toggle="collapse" data-parent="#accordion" href="#q3Collapse" aria-expanded="false" aria-controls="q3Collapse">See the Answer <span class=" glyphicon glyphicon-chevron-down"></span></a>
+                        </div>
+                        <div id="q3Collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="q3Heading">
+                            <div class="panel-body">
+                                <p>I have used HighCharts to create charts here. I have used 2 different approach for fetching the data points for charts.</p>
+                                <div class="col-md-12 p15">
+                                    <div class="col-md-12"><strong>By using AJAX:</strong> I converted the csv data given along with this attachment into JSON by using <a href="http://www.convertcsv.com/csv-to-json.htm">convertcsv</a>. Then I hosted this JSON data on <a href="http://myjson.com/">myjson</a>. Then, using the AJAX call fetched the data points for chart.</div>
+                                    <div class="col-md-12">
+                                        <div id="chartContainer1" class="chart col-md-12"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 p15">
+                                    <div class="col-md-12"><strong>By reading local file:</strong> I have used default file uploader (vendor's default dialog box for input type file) & JS FileReader object to fetch the local csv file asynchronously and parse the file data to prepare data points for chart. Please upload a csv file below and the chart will rendered. Please see the attached JS code for more information.</div>
+                                    <div class="col-md-12 p15">
+                                        <input id="fileUpload" type="file" class="btn btn-primary">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div id="chartContainer2" class="chart col-md-12"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading row" role="tab" id="q4Heading">
+                            <h4 class="panel-title">Use the two url's shown below to retrieve the strings they return and after they both complete, concatenate both strings in the correct order with a space in between and display the result.</h4>
+                            <br><a href="http://cdn.gfkdaphne.com/tests/async.php?a=1">http://cdn.gfkdaphne.com/tests/async.php?a=1</a><br>
+                            <a href="http://cdn.gfkdaphne.com/tests/async.php?a=2">http://cdn.gfkdaphne.com/tests/async.php?a=2</a>
+                            <a class="collapsed pull-right" role="button" data-toggle="collapse" data-parent="#accordion" href="#q4Collapse" aria-expanded="false" aria-controls="q4Collapse">See the Answer <span class=" glyphicon glyphicon-chevron-down"></span></a>
+                        </div>
+                        <div id="q4Collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="q4Heading">
+                            <div class="panel-body">
+                                <h4 class="text-center col-md-12">JS Style</h4>
+                                <figure class="col-md-9">
+                                    <pre class="prettyprint">
+                                        <code>
+var toPrint;
+ajax.get('https://cdn.gfkdaphne.com/tests/async.php?a=1').success(function (data, xhr) {
+    console.log("First request success.", data);
+    toPrint = data;
+
+    ajax.get("https://cdn.gfkdaphne.com/tests/async.php?a=2").success(function(data, xhr){
+        console.log("Second request success.", data);
+        toPrint += " "+data;
+
+        document.getElementById("q4OutputJS").innerHTML = toPrint;
+    }).error(function(error, xhr){
+        console.log("Second request failed.", error)
+        document.getElementById("q4OutputJS").children[0].className = "loader hide";
+    });
+}).error(function (error, xhr) {
+    console.log("First request failed.", error)
+    document.getElementById("q4OutputJS").children[0].className = "loader hide";
+}).always(function(data, xhr){
+    // code which executes in case of both success and error
+});
+                                        </code>
+                                    </pre>
+                                </figure>
+                                <div class="col-md-3 outputArea">
+                                    <input id="ques4JS" class="btn btn-primary col-md-12" type="button" value="Load & Concatenate Strings">
+                                    <div id="q4OutputJS" class="prettyprint">
+                                        <div class="loader">Loading...</div>
+                                    </div>
+                                </div>
+
+                                <h4 class="text-center col-md-12">jQuery Style</h4>
+                                <figure class="col-md-9">
+                                    <pre class="prettyprint">
+                                        <code>
+var toPrint;
+$.ajax("https://cdn.gfkdaphne.com/tests/async.php?a=1").done(function(data){
+    toPrint = data;
+}).fail( function(error){
+    console.log("first request failed", error);
+    $("#q4OutputjQuery .loader").hide();
+}).then(function(){
+    $.ajax("https://cdn.gfkdaphne.com/tests/async.php?a=2").done(function(data){
+        toPrint += " "+data;
+        $("#q4OutputjQuery").html(toPrint);
+    }).fail(function(error){
+        console.log("second request failed", error);
+        $("#q4OutputjQuery .loader").hide();
+    });
+});
+                                        </code>
+                                    </pre>
+                                </figure>
+                                <div class="col-md-3 outputArea">
+                                    <input id="ques4jQuery" class="btn btn-primary col-md-12" type="button" value="Load & Concatenate Strings">
+                                    <div id="q4OutputjQuery" class="prettyprint">
+                                        <div class="loader">Loading...</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
